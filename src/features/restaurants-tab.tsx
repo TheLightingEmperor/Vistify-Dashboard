@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { Building2, ChevronDown, ContactRound, Filter, Mail, MonitorOff, Sparkles, X } from "lucide-react";
+import { Building2, ChevronDown, ContactRound, Filter, Mail, MonitorOff, X } from "lucide-react";
 
 import { CompanyAvatar } from "@/components/dashboard/company-avatar";
 import { DistributionCard } from "@/components/dashboard/distribution-card";
@@ -55,10 +55,8 @@ export function RestaurantsTab({ active }: { active: boolean }) {
   }, [query, verdicts, difficulties]);
 
   const staticCount = data.restaurants.filter((r) => STATIC_VERDICTS.includes(r.verdict)).length;
-  const easierCount = data.restaurants.filter((r) => r.difficulty === "Easier").length;
   const mapped = data.restaurants.filter((r) => contactCount(r.chain) > 0).length;
   const staticActive = verdicts.length === STATIC_VERDICTS.length && STATIC_VERDICTS.every((v) => verdicts.includes(v));
-  const easierActive = difficulties.length === 1 && difficulties[0] === "Easier";
   const filtered = query || verdicts.length || difficulties.length;
 
   const clear = () => {
@@ -157,7 +155,7 @@ export function RestaurantsTab({ active }: { active: boolean }) {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+      <div className="grid gap-4 sm:grid-cols-3">
         <StatCard label="Prospects" value={data.restaurants.length} hint="photo-checked chains" icon={<Building2 />} onClick={clear} active={!filtered} actionLabel="Show all prospects" />
         <StatCard
           label="Printed boards"
@@ -166,14 +164,6 @@ export function RestaurantsTab({ active }: { active: boolean }) {
           icon={<MonitorOff />}
           onClick={() => setVerdicts(staticActive ? [] : STATIC_VERDICTS)}
           active={staticActive}
-        />
-        <StatCard
-          label="Easier sales"
-          value={easierCount}
-          hint="Sale difficulty: Easier"
-          icon={<Sparkles />}
-          onClick={() => setDifficulties(easierActive ? [] : ["Easier"])}
-          active={easierActive}
         />
         <StatCard
           label="Contacts mapped"
