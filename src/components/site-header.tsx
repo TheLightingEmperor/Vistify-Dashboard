@@ -15,7 +15,7 @@ const counts = {
 export function SiteHeader() {
   const { tab, setTab } = useNav();
   return (
-    <header className="sticky top-0 z-30 border-b border-border bg-white shadow-[0_4px_18px_rgb(12_45_47/0.055)] backdrop-blur">
+    <header className="sticky top-[env(safe-area-inset-top,0px)] z-30 border-b border-border bg-white shadow-[0_4px_18px_rgb(12_45_47/0.055)] backdrop-blur">
       <div className="mx-auto flex max-w-[1500px] flex-wrap items-end gap-x-6 gap-y-1 px-4 pt-3 sm:px-6 lg:gap-x-24 lg:px-8">
         <div className="flex flex-col items-end pb-1.5">
           <VisitifyLogo />

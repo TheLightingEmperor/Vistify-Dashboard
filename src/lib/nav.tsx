@@ -49,7 +49,11 @@ export function NavProvider({ children }: { children: ReactNode }) {
   const [hiddenOpen, openHidden] = useState<NavState["hiddenOpen"]>(null);
 
   useEffect(() => {
-    window.history.replaceState(null, "", `#${tab}`);
+    try {
+      window.history.replaceState(null, "", `#${tab}`);
+    } catch {
+      /* sandboxed frames can refuse history updates; the tab still works */
+    }
   }, [tab]);
 
   const setTab = useCallback((next: TabId) => {

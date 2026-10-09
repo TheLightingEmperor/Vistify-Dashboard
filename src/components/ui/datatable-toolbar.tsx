@@ -16,6 +16,9 @@ interface Props {
   actions?: ReactNode;
 }
 
+// Downloads are blocked in sandboxed preview frames, so the preview build hides Export.
+const CAN_EXPORT = !import.meta.env.VITE_PREVIEW_ONLY;
+
 export function DatatableToolbar({ query, onQueryChange, placeholder, filters, onExport, exportLabel = "Export", actions }: Props) {
   return (
     <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -41,7 +44,7 @@ export function DatatableToolbar({ query, onQueryChange, placeholder, filters, o
       <div className="flex flex-wrap items-center gap-2 sm:ml-auto">
         {actions}
         {filters}
-        {onExport && (
+        {onExport && CAN_EXPORT && (
           <Button variant="outline" onClick={onExport} className="gap-2">
             <Download className="h-4 w-4" />
             {exportLabel}
