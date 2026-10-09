@@ -1,4 +1,4 @@
-import { VisitifyLogo } from "@/components/visitify-logo";
+import { PoweredByKamana, VisitifyLogo } from "@/components/visitify-logo";
 import { data } from "@/lib/data";
 import { TABS, useNav } from "@/lib/nav";
 import { cn } from "@/lib/utils";
@@ -15,11 +15,11 @@ const counts = {
 export function SiteHeader() {
   const { tab, setTab } = useNav();
   return (
-    <header className="sticky top-0 z-30 border-b border-border bg-white/95 shadow-[0_4px_18px_rgb(12_45_47/0.055)] backdrop-blur">
+    <header className="sticky top-0 z-30 border-b border-border bg-white shadow-[0_4px_18px_rgb(12_45_47/0.055)] backdrop-blur">
       <div className="mx-auto flex max-w-[1500px] flex-wrap items-end gap-x-6 gap-y-1 px-4 pt-3 sm:px-6 lg:gap-x-24 lg:px-8">
         <div className="flex flex-col items-end pb-1.5">
           <VisitifyLogo />
-          <span className="mt-1 text-[11px] font-medium tracking-wide text-muted-foreground">Powered by Kamana</span>
+          <PoweredByKamana className="mt-0.5" />
         </div>
         <nav aria-label="Pages" role="tablist" className="-mb-px flex w-full min-w-0 justify-between gap-1 overflow-x-auto sm:w-auto sm:justify-start sm:gap-6 lg:gap-10">
           {TABS.map((t) => {
