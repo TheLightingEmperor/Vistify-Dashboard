@@ -1,0 +1,65 @@
+@import "@fontsource-variable/inter";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Palette taken from the Kamana OS Dashboard: teal-green primary, white cards,
+   soft green tint for highlights, cool-grey lines. */
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --canvas: 180 16% 96%;
+    --foreground: 187 56% 6%;
+    --card: 0 0% 100%;
+    --card-foreground: 187 56% 6%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 187 56% 6%;
+    --primary: 180 100% 30%;
+    --primary-dark: 181 100% 25%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 176 50% 95%;
+    --secondary-foreground: 181 100% 25%;
+    --muted: 180 16% 96%;
+    --muted-foreground: 186 10% 38%;
+    --accent: 176 50% 95%;
+    --accent-foreground: 181 100% 25%;
+    --destructive: 3 50% 55%;
+    --destructive-foreground: 0 0% 100%;
+    --amber: 37 67% 53%;
+    --amber-soft: 39 100% 94%;
+    --amber-foreground: 38 71% 34%;
+    --border: 180 14% 83%;
+    --border-strong: 180 17% 71%;
+    --input: 180 14% 83%;
+    --ring: 180 100% 30%;
+    --radius: 0.8rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html,
+  body,
+  #root {
+    min-height: 100%;
+  }
+
+  body {
+    @apply bg-canvas font-sans text-foreground antialiased;
+    background-image: radial-gradient(circle at 9% -10%, hsl(var(--primary) / 0.06), transparent 28%);
+    background-attachment: fixed;
+  }
+}
+
+/* Row that was reached by following a link from another tab. */
+@layer components {
+  tr[data-highlighted="true"] {
+    @apply bg-accent hover:bg-accent;
+    box-shadow: inset 3px 0 0 hsl(var(--primary));
+  }
+  tr[data-highlighted="true"][data-pulse="true"] {
+    @apply animate-row-pulse;
+  }
+}
